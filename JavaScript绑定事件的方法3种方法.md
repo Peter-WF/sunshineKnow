@@ -1,6 +1,6 @@
 ###javascript绑定事件的3种方法 2015/07/16
 
->[原文](http://www.itxueyuan.org/view/6338.html)感谢作者提供的答案。
+>[原文](http://www.itxueyuan.org/view/6338.html)感谢提供答案。
 
 ###要想让javascript对用户操作做出响应，首先要对DOM元素绑定事件处理函数。所谓事件处理函数，就是处理用户操作的函数，不同的操作对应不同的名称。
 

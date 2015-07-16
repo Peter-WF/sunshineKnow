@@ -1,6 +1,6 @@
 ###如何优雅的用js动态的添加html代码 2015/07/16
 
->[原文](http://segmentfault.com/q/1010000000312781&sa=U&ei=r2deU9qOGM6iyAS79YHIDg&ved=0CGMQFjAK&usg=AFQjC)感谢Tychio提供的答案。
+>[原文](http://segmentfault.com/q/1010000000312781&sa=U&ei=r2deU9qOGM6iyAS79YHIDg&ved=0CGMQFjAK&usg=AFQjC)感谢Tychio提供答案。
 
 1.使用DOM
 
