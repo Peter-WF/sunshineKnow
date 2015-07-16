@@ -89,4 +89,23 @@
 
 >####attachEvent()函数语法
 
->elementObject.attachEvent(eventName,h)
+>elementObject.attachEvent(eventName,handle);
+
+<table>
+	<tr>
+		<td>参数</td>
+		<td>说明</td>
+	</tr>
+	<tr>
+		<td>elementObject</td>
+		<td>DOM对象（即DOM元素）。</td>
+	</tr>
+	<tr>
+		<td>eventName</td>
+		<td>事件名称。注意，与addEventListener()不同，这里的事件名称有“ on ”，如鼠标单击事件 onclick ，鼠标双击事件 ondoubleclick ，鼠标移入事件 onmouseover，鼠标移出事件 onmouseout 等。</td>
+	</tr>
+	<tr>
+		<td>handle</td>
+		<td>事件句柄函数，即用来处理事件的函数。</td>
+	</tr>
+</table>
