@@ -109,3 +109,28 @@
 		<td>事件句柄函数，即用来处理事件的函数。</td>
 	</tr>
 </table>
+
+>####注意：事件句柄函数是指“函数名”，不能带小括号。
+
+>addEventListener()是标准的绑定事件监听函数的方法，是W3C所支持的，Chrome、FierFox、Opera、Safari、IE9.0及其以上版本都支持该函数；但是IE8.0及其以下版本不支持该方法，它使用attchEvent()来绑定事件监听函数。所以，这种绑定事件的方法必须要处理浏览器兼容问题。
+
+>下面绑定事件的代码，进行了兼容性处理，能够被所有浏览器支持。
+
+    function addEvent(obj,type,handle){
+        try{
+            obj.addEventListener(type,handle,false);
+        }catch(e){
+            try{
+                obj.attEvent('on'+type,handle);
+            }catch(e){
+                obj['on'+type]=handle;
+            }
+        }
+    }
+
+>例如，一个id="demo"的按钮绑定事件，鼠标单击时弹出警告框：
+
+    addEvent(document.ElementById("demo"),"click",myAlert);
+    function myAlert(){
+        alert("又是一个警告框");
+    }
