@@ -2,8 +2,6 @@
 
 >[原文](http://segmentfault.com/q/1010000000312781&sa=U&ei=r2deU9qOGM6iyAS79YHIDg&ved=0CGMQFjAK&usg=AFQjC)感谢Tychio提供的答案。
 
-###三种方案：
-
 1.使用DOM
 
     //使用createElement创建元素
