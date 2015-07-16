@@ -26,7 +26,7 @@
 
 >1.原生函数
 
-    <input onclick="alert('谢谢支持')" tyle="buttom" value="点击我，弹出警告框" />`
+    <input onclick="alert('谢谢支持')" tyle="buttom" value="点击我，弹出警告框" />
 
 >2.自定义函数
 
