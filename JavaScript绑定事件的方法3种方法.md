@@ -13,9 +13,9 @@
 
 ###一.在dom元素中直接绑定。
 >这里的dom元素，可以理解为html标签，javascript支持在标签中直接绑定事件。
-    
-    onXXX="javascript Code"
-
+```
+onXXX="javascript Code"
+```
 >其中：
 
 >1.onXXX为事件的名称。例如，鼠标单击事件onclick，鼠标双击事件ondouble，鼠标移入事件onmouserover,鼠标移出事件onmouseout等。
@@ -25,9 +25,9 @@
 >例如,单击一个按钮，弹出警告框的代码有如下两种写法：
 
 >1.原生函数
-
-    <input onclick="alert('谢谢支持')" tyle="buttom" value="点击我，弹出警告框" />
-
+```
+<input onclick="alert('谢谢支持')" tyle="buttom" value="点击我，弹出警告框" />
+```
 >2.自定义函数
 
     <input onclick="myAlert()" type="button" value="点击我，弹出警告框"/>
@@ -36,6 +36,7 @@
             alert("谢谢支持");
         }
     </script>
+
 ###二.在javascript代码中绑定。
 >在javascript代码中(即`<script>`标签内)绑定事件可以使javascript代码与html标签分离，文档结构清晰，便于管理和分开开发。
 
