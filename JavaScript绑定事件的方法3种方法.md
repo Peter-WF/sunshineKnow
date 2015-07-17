@@ -58,6 +58,7 @@ onXXX="javascript Code"
             alert(this.getAttribute("type"));
         }
     </script>
+    
 ###三.绑定事件监听函数。
 >绑定事件的另一种方法是用addEventListener()或attachEvent()
 
