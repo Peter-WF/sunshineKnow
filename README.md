@@ -6,4 +6,4 @@
 
 [JavaScript绑定事件的方法3种方法](//github.com/Zjingwen/sunshineKnow/blob/master/JavaScript绑定事件的方法3种方法.md)
 
-[git pull push没有指定branch报错的解决方法](//github.com/Zjingwen/sunshineKnow/blob/master/[git pull push没有指定branch报错的解决方法.md)
+[git-pull或push没有指定branch报错的解决方法](//github.com/Zjingwen/sunshineKnow/blob/master/git-pull或push没有指定branch报错的解决方法.md)
