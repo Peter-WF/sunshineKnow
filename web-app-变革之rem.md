@@ -87,4 +87,87 @@ html{
 
 >40px=1rem在根元素（font-size=40的时候）；
 
->在上面两个例子中我们发现第一个案例按钮是等比例方法到第二个按钮，html font-size的改变就会导致按钮的大小发生改变，我们并不需要改变先前给按钮设置的高度宽度，其实这就是我们最想看到的，为什么做么说？接下来我们再看一个例子：
+>在上面两个例子中我们发现第一个案例按钮是等比例方法到第二个按钮，html font-size的改变就会导致按钮的大小发生改变，我们并不需要改变先前给按钮设置的高度宽度，其实这就是我们最想看到的。
+
+###到这里肯定很多人会问我是怎么计算出不同分辨率下fnot-size的值。
+
+>首先假设我上面设计稿给我的时候是按照640的标准尺寸给我的前提下,（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格
+
+<table>
+	<tr>
+		<td>宽度</td>
+		<td>320</td>
+		<td>384</td>
+		<td>480</td>
+		<td>640</td>
+	</tr>
+	<tr>
+		<td>屏幕对比比例</td>
+		<td>0.5</td>
+		<td>0.6</td>
+		<td>0.75</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>Html font-size</td>
+		<td>10px</td>
+		<td>12px</td>
+		<td>15px</td>
+		<td>20px</td>
+	</tr>
+	<tr>
+		<td>元素宽度（px）</td>
+		<td>100px</td>
+		<td>120px</td>
+		<td>150px</td>
+		<td>200px</td>
+	</tr>
+	<tr>
+		<td>元素宽度（rem）</td>
+		<td>10rem</td>
+		<td>10rem</td>
+		<td>10rem</td>
+		<td>10rem</td>
+	</tr>
+</table>
+
+>页面是以640的宽度去切，怎么计算不同宽度下font-size的值，大家看表格上面的数值变化应该能明白。举个例子：384/640=0.6，384是640的0.6倍，所以384页面宽度下面的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
+
+>这样的好处是所有的设备分辨率都能兼容适配，淘宝首页目前就是用的js计算。但其实不用js我们也可以做适配，一般我们在做web app都会先统计自己网站有哪些主流的屏幕设备，然后针对那些设备去做media query设置也可以实现适配，例如下面这样：
+
+```
+html{
+	font-size:20px;
+}
+@media only screen and(min-width:401px){
+	html{
+		font-size:25px!impotrant;
+	}
+}
+@media only screen and(min-width:428px){
+	html{
+		font-size:26.75px!important;
+	}
+}
+@media only screen and(min-width:481px){
+	html{
+		font-size:30px!important;
+	}
+}
+@media only screen and(min-width:569px){
+	html{
+		font-size:35px!important;
+	}
+}
+@media only screen and(min-width:641px){
+	html{
+	font-size:40px!important;
+	}
+}
+
+```
+>上面的做的设置当然是不能所有设备全适配，但是用JS是可以实现全适配。具体用哪个就要根据自己的实际工作场景去定了。
+
+>下面推荐两个国内用了rem技术的移动站，大家可以上去参考看看他们的做法，手机淘宝目前只有首页用了rem，native app的首页是内嵌的web app首页。
+
+[淘宝首页](http://m.taobao.com)
