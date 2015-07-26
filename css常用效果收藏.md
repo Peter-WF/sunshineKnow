@@ -25,8 +25,6 @@ Flash动画的颜色不能被CSS滤镜控制，可以在Flash代码的和之间�
 ```
 <div contentEditable="true"></div>
 ```
-效果：
-<div style="border:1px solid #999;" contentEditable="true"></div>
 
 3.禁止用户复制
 >设置div禁止选择功能
@@ -39,10 +37,6 @@ unselectable="on" onselectstart="return false";
 你好世界
 </div>
 ```
-效果：
-<div unselectable="on" onselectstart="return false">
-你好世界
-</div>
 
 4.让字符间距统一
 >css代码
@@ -80,7 +74,6 @@ unselectable="on" onselectstart="return false";
 ```
 <input type="text" placeholder="请输入关键字" x-webkit-speech/>
 ```
-<input type="text" placeholder="请输入关键字" x-webkit-speech/>
 
 6.给input的placeholder设置颜色
 >css
@@ -128,21 +121,8 @@ text-overflow: ellipsis;
 </div>
 ```
 
-><div class="haorooms">
-你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界
-</div>
-
-<style>
-.haorooms{
-	width: 200px;
-	display: block;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-</style>
-
 9.阴影效果
+>
 ```
 -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.2);
 -moz-box-shadow: 0 1px 1px rgba(0,0,0,.2);
