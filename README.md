@@ -11,3 +11,5 @@
 [web-app-变革之rem](//github.com/Zjingwen/sunshineKnow/blob/master/web-app-变革之rem.md)
 
 [css常用效果收藏](//github.com/Zjingwen/sunshineKnow/blob/master/css常用效果收藏.md)
+
+[js数组去重方法](//github.com/Zjingwen/sunshineKnow/blob/master/js数组去重方法.md)
