@@ -13,3 +13,5 @@
 [css常用效果收藏](//github.com/Zjingwen/sunshineKnow/blob/master/css常用效果收藏.md)
 
 [js数组去重方法](//github.com/Zjingwen/sunshineKnow/blob/master/js数组去重方法.md)
+
+[javascript和事件](//github.com/Zjingwen/sunshineKnow/blob/master/javascript和事件.md)
