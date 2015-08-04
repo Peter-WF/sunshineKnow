@@ -64,3 +64,20 @@ var fun=function(){
 element.addEventListener('click',fun,false);
 element.removeEventListener('click',fun,false);
 ```
+
+####事件触发过程
+>在上面大体了解了事件是什么、如何监听并执行某些操作，但我们对事件触发整个过程还不够了解。
+
+>下面就是事件的触发过程，借用了w3c的图片
+<img src="img/event0.svg"/>
+
+1.事件捕获阶段（Captuer Phase）
+>当我们在dom树的某个节点发生了一些操作（例如单击、鼠标移动上去），就会有一个事件发射过去。这个事件从Window发出，不断经过下级节点直到，目标节点。在到达目标节点之前的过程，就是捕获阶段（Capture Phase）
+
+>所有经过的节点，都会触发这个事件。捕获阶段的任务就是建立这个事件传递路线，以便后面冒泡阶段顺着这条路线返回window。
+
+>监听某个在捕获阶段触发的事件，需要在事件监听函数传递第三个参数true
+```
+element.addEventListener(<event-name>,<callback>,true);
+```
+但一般使用时我们往往传递false，会在后面说明原因。 
