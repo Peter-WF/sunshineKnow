@@ -70,7 +70,7 @@ element.removeEventListener('click',fun,false);
 
 >下面就是事件的触发过程，借用了w3c的图片
 
-![Alt text](https://github.com/Zjingwen/sunshineKnow/blob/master/img/event0.svg)
+<img src="https://github.com/Zjingwen/sunshineKnow/blob/master/img/event0.svg" alt="">
 
 1.事件捕获阶段（Captuer Phase）
 >当我们在dom树的某个节点发生了一些操作（例如单击、鼠标移动上去），就会有一个事件发射过去。这个事件从Window发出，不断经过下级节点直到，目标节点。在到达目标节点之前的过程，就是捕获阶段（Capture Phase）
@@ -81,4 +81,4 @@ element.removeEventListener('click',fun,false);
 ```
 element.addEventListener(<event-name>,<callback>,true);
 ```
-但一般使用时我们往往传递false，会在后面说明原因。 
+但一般使用时我们往往传递false，会在后面说明原因。
