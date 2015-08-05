@@ -73,11 +73,8 @@ element.removeEventListener('click',fun,false);
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
      width="100%" height="100%" viewBox="0 0 640 690">
-
   <title>DOM Level 3 Events: Event Flow</title>
   <desc>Alternate description</desc>
-    
-  
   <defs id="defs-1">
     <path id="arrowhead" d="M-9,-4 L0,0 -9,4 Z" stroke-linejoin="round" stroke-linecap="round"/>
     <marker id="blackArrow" viewBox="-13 -5 14 10" refX="-4" markerWidth="10" markerHeight="20" orient="auto">
@@ -89,7 +86,6 @@ element.removeEventListener('click',fun,false);
     <marker id="greenArrow" viewBox="-13 -5 14 10" refX="-4" markerWidth="10" markerHeight="20" orient="auto">
       <use xlink:href="#arrowhead" stroke="green" fill="green"  />
     </marker>
-
     <filter x="-5%" y="-5%" width="120%" height="120%" id="dropShadow">
       <feGaussianBlur stdDeviation="2 2" in="SourceAlpha"/> 
       <feOffset dx="4" dy="4"/>
@@ -101,10 +97,7 @@ element.removeEventListener('click',fun,false);
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-
   </defs>
-  
-
   <g id="nodes" font-family="Verdana, sans-serif" font-size="18" fill="black" text-anchor="middle" stroke="none" stroke-width="2">
     <g id="Window-node" transform="translate(310, 10)">
       <a xlink:href="../DOM3-Events.html#glossary-window" target="_parent">
@@ -112,91 +105,71 @@ element.removeEventListener('click',fun,false);
         <text x="0" y="26">Window</text>
       </a>
     </g>
-
     <g id="document-node" transform="translate(310, 80)">
       <a xlink:href="../DOM3-Events.html#glossary-document" target="_parent">
         <rect x="-60" y="0" width="120" height="40" fill="gainsboro" stroke="black" filter="url(#dropShadow)" />
         <text x="0" y="26">Document</text>
       </a>
     </g>
-
     <g id="html-node" transform="translate(310, 150)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;html&gt;</text>
     </g>
-
     <g id="body-node" transform="translate(310, 220)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;body&gt;</text>
     </g>
-
     <g id="table-node" transform="translate(310, 290)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;table&gt;</text>
     </g>
-
     <g id="tbody-node" transform="translate(310, 360)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;tbody&gt;</text>
     </g>
-
     <g id="tr_1-node" transform="translate(140, 450)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;tr&gt;</text>
     </g>
-
     <g id="tr_2-node" transform="translate(500, 450)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;tr&gt;</text>
     </g>
-
-
     <g id="tr_1_td_1-node" transform="translate(70, 540)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;td&gt;</text>
     </g>
-
     <g id="tr_1_td_1_text-node" transform="translate(70, 610)">
       <ellipse cx="0" cy="35" rx="64" ry="35" fill="steelblue" stroke="black" filter="url(#dropShadow)"/>
       <text x="0" y="40" font-size="15" fill="white" text-anchor="middle">Shady Grove</text>
     </g>
-
-
     <g id="tr_1_td_2-node" transform="translate(210, 540)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;td&gt;</text>
     </g>
-
     <g id="tr_1_td_2_text-node" transform="translate(210, 610)">
       <ellipse cx="0" cy="35" rx="64" ry="35" fill="steelblue" stroke="black" filter="url(#dropShadow)"/>
       <text x="0" y="40" font-size="15" fill="white" text-anchor="middle">Aeolian</text>
     </g>
-
-
     <g id="tr_2_td_1-node" transform="translate(430, 540)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="blue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26" fill="white">&lt;td&gt;</text>
     </g>
-
     <g id="tr_2_td_1_text-node" transform="translate(430, 610)">
       <ellipse cx="0" cy="35" rx="64" ry="35" fill="steelblue" stroke="black" filter="url(#dropShadow)"/>
       <text x="0" y="40" font-size="15" fill="white" text-anchor="middle">
         <tspan x="0" y="34">Over the River,</tspan> <tspan x="0" y="54">Charlie</tspan>
       </text>
     </g>
-
-
     <g id="tr_2_td_2-node" transform="translate(570, 540)">
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="lightskyblue" stroke="black" filter="url(#dropShadow)" />
       <text x="0" y="26">&lt;td&gt;</text>
     </g>
-
     <g id="tr_2_td_2_text-node" transform="translate(570, 610)">
       <ellipse cx="0" cy="35" rx="64" ry="35" fill="steelblue" stroke="black" filter="url(#dropShadow)"/>
       <text x="0" y="40" font-size="15" fill="white" text-anchor="middle">Dorian</text>
     </g>
   </g>
-  
   <g id="edges">
     <line id="window-document" x1="310" y1="50" x2="310" y2="73" stroke="black" stroke-width="2" marker-end="url(#blackArrow)"/>     
     <line id="document-html" x1="310" y1="120" x2="310" y2="143" stroke="black" stroke-width="2" marker-end="url(#blackArrow)"/>     
@@ -220,11 +193,9 @@ element.removeEventListener('click',fun,false);
     <line id="tr_2_td_1-text" x1="430" y1="580" x2="430" y2="603" stroke="black" stroke-width="2" marker-end="url(#blackArrow)"/>
     <line id="tr_2_td_2-text" x1="570" y1="580" x2="570" y2="603" stroke="black" stroke-width="2" marker-end="url(#blackArrow)"/>
   </g>
-  
   <g id="event-flow" stroke-dasharray="10,5">
     <g id="capture_phase">
       <a xlink:href="../DOM3-Events.html#glossary-capture-phase" target="_parent"><text fill="red" font-family="Verdana, sans-serif" font-size="20" font-weight="bold" text-anchor="middle"><tspan x="150" y="220">Capture</tspan> <tspan x="150" y="240">Phase</tspan> <tspan x="150" y="260">(1)</tspan></text></a>
-
       <path id="capture_phase_arrow" fill="none" stroke="red" stroke-width="3" marker-end="url(#redArrow)" stroke-linecap="round"
             d="M235,28 C195,25 195,75 238,85 "/>
       <use xlink:href="#capture_phase_arrow" x="5" y="70" />
@@ -235,19 +206,14 @@ element.removeEventListener('click',fun,false);
             d="M245,378 C205,375 205,473 428,458 "/>
       <path id="capture_phase_arrow3" fill="none" stroke="red" stroke-width="3" marker-end="url(#redArrow)" stroke-linecap="round"
             stroke-dasharray="none" d="M428,473 C330,470 330,533 363,548 "/>
-
     </g>
-    
     <g id="target_phase">
       <a xlink:href="../DOM3-Events.html#glossary-target-phase" target="_parent"><text fill="blue" font-family="Verdana, sans-serif" font-size="20" font-weight="bold" text-anchor="middle"><tspan x="337" y="580">Target</tspan> <tspan x="337" y="600">Phase</tspan> <tspan x="337" y="620">(2)</tspan></text></a>
-      
       <rect x="-50" y="0" width="100" height="40" rx="5" ry="5" fill="none" stroke="black" stroke-width="5" stroke-dasharray="none" 
             transform="translate(430, 540)"/>
     </g>
-    
     <g id="bubble_phase">
       <a xlink:href="../DOM3-Events.html#glossary-bubbling-phase" target="_parent"><text fill="green" font-family="Verdana, sans-serif" font-size="20" font-weight="bold" text-anchor="middle"><tspan x="490" y="320">Bubbling</tspan> <tspan x="490" y="340">Phase</tspan> <tspan x="490" y="360">(3)</tspan></text></a>
-
       <path id="bubble_phase_arrow3" fill="none" stroke="green" stroke-width="3" marker-end="url(#greenArrow)" stroke-linecap="round"
             stroke-dasharray="none" d="M492,548 C630,483 630,470 562,473"/>
       <path id="bubble_phase_arrow2" fill="none" stroke="green" stroke-width="3" marker-end="url(#greenArrow)" stroke-linecap="round"
@@ -262,7 +228,6 @@ element.removeEventListener('click',fun,false);
             d="M385,95 C435,92 435,52 395,42"/>
     </g>
   </g>
-  
 </svg>
 
 1.事件捕获阶段（Captuer Phase）
