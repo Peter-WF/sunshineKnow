@@ -82,3 +82,14 @@ element.removeEventListener('click',fun,false);
 element.addEventListener(<event-name>,<callback>,true);
 ```
 但一般使用时，我们往往传递false，会在后面说明原因。
+
+2.目标阶段（Target Phase）
+>当事件跑啊跑，跑到了事件触发目标节点那里，最终在目标节点上面触发这个事件，就是目标阶段。
+
+>需要注意的是，事件触发的目标节总是最底层的节点。比如你点击一段文字，你以为你的事件目标节点在div上，但实际上触发在<p>、<span>等子节点上。例如：
+```
+document.addEventListener("click",function(e){
+	alert(e.target.tagName);
+},false);
+```
+>在demo中，我监听单击事件，将目标节点的tagname弹出来。当你点击加粗字体时，事件的目标节点就为最底层<string>节点。
