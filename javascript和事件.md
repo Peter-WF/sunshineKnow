@@ -140,3 +140,13 @@ element.addEventListener("click",function(){
 	}
 },false);
 ```
+
+####停止事件冒泡（stopPropagation）
+>所有的事情都会有对立面，事件的冒泡阶段虽然看起来很好，也会有不适合的场所。比较复杂的应用，由于事件监听比较复杂，可能会希望只监听发生在具体节点的事件。这个时候就需要停止事件冒泡、
+
+>停止事件冒泡需要使用事件对象的stopPropagation方法，具体代码如下：
+```
+element.addEventListener('click',function(){
+	event.stopProopagation();
+})
+```
