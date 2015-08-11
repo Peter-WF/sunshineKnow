@@ -150,3 +150,82 @@ element.addEventListener('click',function(){
 	event.stopProopagation();
 })
 ```
+>在事件监听回调函数里，会传递一个参数，这就是Event对象，在这个对象上调用stopPropagation方法即可停止事件冒泡。
+```
+html:
+<div class="overlay">Click outside to close.</div>
+
+css:
+*{
+	-moz-box-sizing:border-box;
+		 box-sizing:border-box;
+}
+html,
+body{
+	height:100%;
+	margin:0;
+	font:bold 64px/70px helvetica;
+	background:#41b7d8;
+	color:red;
+}
+.overlay{
+	position: absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	height:80%;
+	width:80px;
+	margin:auto;
+	padding:20px;
+	background:#fff;
+	box-shadow:1px 4pxx 40px rgba(0,0,0,0.5);
+}
+
+js:
+var overlay=document.querySelector('.overlay');
+overlay.addEventListener('click',function(event){
+	event.stopPropagation()
+});
+
+document.addEvenListener('click',function(event){
+	overlay.parentNode.removeChild(overlay);
+})
+```
+>在上面例子中，有一个弹出层，我们可以在弹出层上做任何操作，例如click等。当我们想关掉这个弹出层，在弹出层外面的任意结构中点击即可关掉。它首先对document节点进行click事件监听，所有的click事件，都会让弹出层隐藏掉。同样的，我们在弹出层上面的单击操作也会导致弹出层隐藏。之后我们对弹出层使用停止事件冒泡，掐断了单击事件返回document的冒泡路线，这样在弹出层的操作就不会被document的事件处理函数监听到。
+
+>更多关于Event对象的事情，我们会在下面介绍。
+
+####事件的Event对象
+>当一个事情被触发的时候，会创建一个事件对象(Event Object),这个对象包含了一些有用的属性或者方法。事件对象会作为第一次参数，传递给我们的回调函数。我们可以使用下面的代码，在浏览器中打印出这个事件对象：
+```
+<button>打印Event Objcet</button>
+<script>
+	var btn=document.getElementsByTayName('button');
+	btn[0].addEventListener("click",function(event){
+			console.log(event);
+		},false)
+</script>
+```
+
+>就可以看到一堆属性列表
+<img src="img/event1.png" alt="">
+事件对象包含很多有用的信息，比如事件触发时，鼠标在屏幕上的坐标、被触发的dom详细信息、以及上图最下面继承过来的停止冒泡方法（stopPropagation）。下面介绍以下比较常用的几个属性和方法。
+1.```type```(string)
+事件的名称，比如“click”。
+2.```target```(node)
+事件要触发的目标节点。
+3.```bubbles```(boolean)
+表明该事件是否是在冒泡阶段触发的。
+4.```preventDefault```(functhin)
+这个方法可以禁止一些默认的因为，例如点击a标签时，会打开一个新页面，如果为a标签监听事件click同时调用该方法，则不会打开新页面。
+5.```stopImmediatePropagation```(function)
+与stopPropagation类似，就是阻止触发其他监听函数。但是与stopPropagation不同的是，它更加强力，阻止除了目标之外的事件触发，甚至阻止针对同一个目标节点的相同事件。
+6.cancelable(boolean)
+这个属性表明该事件是否可以用过调用event.preventDefault方法来禁用默认行为。
+7.eventPhase(number)
+这个属性的数字表明当前事件触发在什么阶段。none：0；捕获：1；目标：2；冒泡：3；。
+8.pageX和pageY(number)
+这两个属性表示触发事件时，鼠标相对于页面的坐标。
+9.isTrusted(boolean)
+表明该事件是浏览器触发(用户真实操作触发)，还是javascript代码触发的。
