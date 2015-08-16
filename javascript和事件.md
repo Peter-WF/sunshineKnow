@@ -152,45 +152,42 @@ element.addEventListener('click',function(){
 ```
 >在事件监听回调函数里，会传递一个参数，这就是Event对象，在这个对象上调用stopPropagation方法即可停止事件冒泡。
 ```
-html:
-<div class="overlay">Click outside to close.</div>
-
-css:
-*{
-	-moz-box-sizing:border-box;
-		 box-sizing:border-box;
-}
-html,
-body{
-	height:100%;
-	margin:0;
-	font:bold 64px/70px helvetica;
-	background:#41b7d8;
-	color:red;
-}
-.overlay{
-	position: absolute;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	height:80%;
-	width:80px;
-	margin:auto;
-	padding:20px;
-	background:#fff;
-	box-shadow:1px 4pxx 40px rgba(0,0,0,0.5);
-}
-
-js:
-var overlay=document.querySelector('.overlay');
-overlay.addEventListener('click',function(event){
-	event.stopPropagation()
-});
-
-document.addEvenListener('click',function(event){
-	overlay.parentNode.removeChild(overlay);
-})
+	html:
+	<div class="overlay">Click outside to close.</div>
+	css:
+	*{
+		-moz-box-sizing:border-box;
+			 box-sizing:border-box;
+	}
+	html,
+	body{
+		height:100%;
+		margin:0;
+		font:bold 64px/70px helvetica;
+		background:#41b7d8;
+		color:red;
+	}
+	.overlay{
+		position: absolute;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+		height:80%;
+		width:80px;
+		margin:auto;
+		padding:20px;
+		background:#fff;
+		box-shadow:1px 4pxx 40px rgba(0,0,0,0.5);
+	}
+	js:
+	var overlay=document.querySelector('.overlay');
+	overlay.addEventListener('click',function(event){
+		event.stopPropagation()
+	});
+	document.addEvenListener('click',function(event){
+		overlay.parentNode.removeChild(overlay);
+	})
 ```
 >在上面例子中，有一个弹出层，我们可以在弹出层上做任何操作，例如click等。当我们想关掉这个弹出层，在弹出层外面的任意结构中点击即可关掉。它首先对document节点进行click事件监听，所有的click事件，都会让弹出层隐藏掉。同样的，我们在弹出层上面的单击操作也会导致弹出层隐藏。之后我们对弹出层使用停止事件冒泡，掐断了单击事件返回document的冒泡路线，这样在弹出层的操作就不会被document的事件处理函数监听到。
 
@@ -272,3 +269,67 @@ element.attachEvent(<event-name>,<callback>);
 另一个，它没有第三个参数，也就是说它只支持监听在冒泡阶段触发的事件，所以为了统一，在使用标准事件监听函数的时候，第三个参数传递false。
 
 当然，这个方法在IE9已经被抛弃，在IE11已经被移除，IE也在慢慢变好。
+
+3.IE中Event对象需要注意的地方
+>IE中往回调函数中传递的事件与标准也有一些差异，你需要使用window.event来获取事件对象。所以你通常会写出下面代码来获取事件对象：
+```
+	event=event || window.event
+```	
+此外还有一些事件属性有差别，比如比较常用的event.target属性，IE中没有，而是使用event.srcElement来代替。如果你的回调函数需要处理触发事件的节点，那么需要写
+```
+	node=event.srcElement || event.target
+```
+常见的就是这点，更细节的不再多说。在概念学习中，我们没有必要哦为不标准的东西支付学习成本；在实际应用中，类库已经帮我们封装好这些兼容性问题。可喜的是IE浏览器现在也开始不断向标准进步。
+
+####事件回调函数的作用域问题
+1.与事件绑定在一起的回调函数作用域会有问题，我们来看个例子：
+>```
+	html
+	<button id="element">Click Me</button>
+	js
+	var element=document.getElementById('element');
+	var user={
+		firstname:'bob',
+		greeting:function(){
+			alert("My name is"+this.firstname);
+		}
+	};
+	element.addEventListener('click',user.greeting)
+```
+回调函数调用的user.greeting函数作用域应该是在user下的，本期望输出my name is bob 结果却输出了 My name is undefined。这是因为事件绑定函数时，该函数会以当前元素为作用域执行。为了证明这一点，我们可以为当前element添加属性：
+```
+	element.firstname="jiangshui"
+```
+再次点击，可以正确弹出My name is jiangshui。那么我们来解决一下这个问题。
+
+2.使用匿名函数
+>我们为回调函数包裹一层匿名函数。
+```
+	html
+	<button id="element"></button>
+	js
+	var element=document.getElementByid("element");
+	var user={
+		firstname:'Bod',
+		greeting:function(){
+			alert('My name is'+this.firstname);
+		}
+	};
+	element.addEventListener("click",function(){
+		user.greeting();
+	})
+```
+包裹之后，虽然匿名函数的作用域被指向事件触发元素，但执行的内容就像直接调用一样，不会影响其作用域。
+
+3.使用bind方法
+>使用匿名函数室友缺陷的，每次调用都要包裹进匿名函数里面，增加了冗余代码等，此外如果想使用removeEventListener解除绑定，还需要再创建一个函数引用。Function类型提供了bind方法，可以为函数绑定作用域，无论函数在哪里调用，都不会改变它的作用域。通过如下语句绑定作用域：
+```
+	user.greeting=user.greeting.bind(user)
+```
+这样我们可以直接调用
+```
+	element.addEventLsitener("click",user.greeting)
+```
+
+
+
