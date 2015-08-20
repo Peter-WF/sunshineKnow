@@ -331,5 +331,59 @@ element.attachEvent(<event-name>,<callback>);
 	element.addEventLsitener("click",user.greeting)
 ```
 
+####常用事件和技巧
+>用户的操作有很多种，所以有很多事情。为了开发方便，浏览器有提供了一些事件，所以有很多很多的事件。这里只介绍一种常用的事件和使用技巧。
 
+1.load
+>load事件在资源等待加载完时触发。这个资源可以是图片、css文件、js文件、视频、document、window等等。
 
+>比较常用的就是监听window的load事件，当页面内所有资源全部加载完成之后就会触发。比用js对图片以及其他资源处理，我们在load事件中触发，可以保证js不会在资源为加载完成就开始处理资源报错。
+
+>同样的，也可以监听图片等其他资源加载情况。
+
+2.beforeunload
+>当浏览者在页面上的输入框输入一些内容时，未保存、误操作关掉网页可能导致输入信息丢失。
+
+>当浏览者输入信息但未保存时关掉网页，我们就可以开始监听这个事件，例如：
+```
+window.addEventListener("beforeunload",function(event){
+	event.returnValue="放弃当前未保存内容而关闭页面？";
+})
+```
+这时候试图关闭网页的时候，会弹窗阻止操作，点击确认之后才会关闭。当然，如果没有这个必要，就不要监听，不要以为使用它可以为你留着浏览者。
+
+3.resize
+>当节点尺寸发生变化时，触发这个事件。通常用在window上，这样可以监听浏览器窗口的变化，通常用在复杂布局和响应式上。
+
+>常见的视差滚动效果网站以及同类比较复杂的布局网站，往往使用javascript来计算尺寸、位置。如果用户调整浏览器大小、尺寸、位置不随着改变则会出现错位情况。在window上监听该事件，触发时调用计算尺寸、位置函数，可以根据浏览器的大小来重新计算。
+
+>但需要注意一点，当浏览器发生任意变化都会触发resize事件，哪怕是缩小1px的浏览器宽度，这样调整浏览器时会触发大量的resize事件，你的回调函数就会被大量的执行，导致卡、崩溃等。
+
+>你可以使用函数throttle和debounce技巧来进行优化，throttle方法的大体思路就是在某一段时间内无论多次调用，只执行一次函数，到达时间就执行；debounce方法大体思路就是在某一段时间内等待是否还会重复调用，如果不会再调用，就执行函数，如果还有重复调用，则不执行继续等待。
+
+4.error
+>当我们加载资源失败或者加载成功但是只加载一部分而无法使用时，就会触发error事件，我们可以通过监听该事件来提示一个友好的报错或者进行其他处理。比如js资源加载失败，则提示尝试刷新；图片资源加载失败，在图片下面提示图片加载失败等。该事件不会冒泡。因为子节点加载失败，并不意味着父节点加载失败，所以你的处理函数必须精确绑定到目标节点。
+
+>需要注意的是，对于该事件，你可以使用addEventListener等进行监听，但是有时候会出现失效，这是因为error事件都触发过了，你的js监听处理代码还没加载进来执行。为了避免这种情况，用内联法更好一些。
+```
+<img src="not-found.jpg" alt="" onerror="doSomething">
+```
+
+####用javascript模拟触发内置事件
+>内置的事件也可以被javascript模拟触发，比如下面函数模拟触发单击事件：
+```
+function simulateClick(){
+	var event=new MouseEvent("click",function(){
+			"view":window,
+			"bubbles":true,
+			"cancelable":true
+		});
+	var cb=document.getElementById("checkbox");
+	var canceled=!cb.dispatchEvent(event);
+	if(canceled){
+		alert("canceled");
+	}else{
+		alert("not canceled");
+	};
+}
+```
