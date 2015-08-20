@@ -206,7 +206,7 @@ element.addEventListener('click',function(){
 ```
 
 >就可以看到一堆属性列表
-<img src="img/event1.png" alt="">
+<img src="img/event1.png" alt="">  
 事件对象包含很多有用的信息，比如事件触发时，鼠标在屏幕上的坐标、被触发的dom详细信息、以及上图最下面继承过来的停止冒泡方法（stopPropagation）。下面介绍以下比较常用的几个属性和方法。
 1.```type```(string)  
 事件的名称，比如“click”。  
