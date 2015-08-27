@@ -387,3 +387,91 @@ function simulateClick(){
 	};
 }
 ```
+####自定义事件
+>我们可以自定义来实现更灵活的开发，事件用好了可以是一件强大的工具，基于事件的开发有很多优势。
+与自定义事件的函数有Event、CustomEvent和dispatchEvent。
+直接自定义事件，使用Event构造函数：
+```
+	var event=new Event('build');
+	elem.addEventListener('build',function(e){
+		xxxxxx
+	},false);
+	elem.dispatchEvent(event);
+```
+CustomEvent可以创建一个高度自定义事件，还可以附带一些数据，具体用法如下：
+```
+	var myEvent=new CustomEvent(eventname,options);
+```
+其中options可以是：
+```
+	{
+		detail:{
+			xxxxxx
+		},
+		bubbles:true,
+		cancelable:false
+	}
+```
+其中detail可以存放一些初始化的信息，可以在触发的时候调用。其他属性就是定义该事件是否具有冒泡等等功能。
+
+>内置的事件会由浏览器根据某些操作进行触发，自定义的事件就需要人工触发，dispatchEvent函数就是用来触发某个事件：
+```
+	element.dispatchEvent(customEvent);
+```
+上面代码表示，在element上面触发custiomEvent这个事件，结合起来用就是：
+```
+	obj.addEventListever("cat",function(e){
+		process(e.detail)
+	});
+```
+使用自定义事件需要注意兼容性问题，而是用jquery就简单多了：
+```
+	//绑定自定义事件
+	$(element).on("myCustomEvent",function(){});
+
+	//触发事件
+	$(element).trigger("myCustomEvent");
+```
+此外，你还可以在触发自定义事件是传递更多参数信息：
+```
+	$("p").on("myCustomEvent",function(event,myName){
+		$(this).text(myName+",hi there!");
+	})
+	$("botton").click(function(){
+		$("p").trigger("myCustomEvent",["John"]);
+	})
+```
+####在开发中应用事件
+>当我们操作某一个Dom，发出一个事件，我们可以再另一个地方写代码捕获这个事件执行处理逻辑。触发操作和捕获处理操作是分开的。我们可以根据这个特性来对程序解耦。
+
+>用事件解耦
+我们可以将一个整个功能，分割成独立的小功能，每个小功能绑定一个事件，由一个控制器负责根据条件触发某个事件。这样，在外面触发这个事件，也可以调用对应功能，使其更加灵活。
+<img src="img/event2.png" alt="">  
+在《基于mvc的javascript Web富应用开发》一书中，有更加具体的实例，有兴趣的朋友可以买本看看。
+
+####发布(publish)和订阅(Subscribe)模式
+>针对上面这种用法，继续抽象一下，就是发布和订阅开发模式。正如其名，这种模式有两个角色；发布者和订阅者，此外有一条信道，发布者被触发往这个信道里面发信，订阅者从这个信道里面收信，如果收到特定信件则执行某个对应逻辑。这样，发布者和订阅者之间是完全解耦的，只有一条信道连接。这样就非常容易扩展，也不会引入额外的依赖。
+
+>这样如果需要添加新功能，只需要添加一个新的订阅者（及其执行逻辑），监听信道中某一类新的信道。这样就非常容易扩展，也不会引入额外的依赖。
+
+>这样如果需要添加新功能，只需要添加一个新的订阅者（及其执行逻辑），监听信道中某一类新的信件。再在应用中通过发布者发送一类新的信件即可。
+
+>具体实现，这里推荐cowboy开发的Tiny Pub Sub，通过jquery实现，非常简洁直观，jquery太赞。代码就这几行：
+```
+	(function($){
+		var o=$({});
+
+		$.subscribe=function(){
+			o.on.apply(o,arguments);
+		};
+
+		$.unsubscribe=function(){
+			o.off.apply(o,arguments);
+		};
+
+		$.poblish=function(){
+			o.trigger.apply(o,arguments);
+		}
+	})
+```
+定义一个对象作为信道，然后提供了3个方法，订阅者、取消订阅、发布者。
